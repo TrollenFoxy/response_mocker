@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Response Mocker — правила</title>
+  <link rel="stylesheet" href="ui.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header>
+    <h1>Response Mocker</h1>
+    <div class="tools">
+      <label class="switch"><input type="checkbox" id="enabled"><span id="enabledLabel">Подмена включена</span></label>
+      <button class="btn" id="export">Экспорт</button>
+      <button class="btn" id="import">Импорт</button>
+      <input type="file" id="file" accept="application/json" hidden>
+    </div>
+  </header>
+
+  <main>
+    <aside>
+      <button class="btn primary" id="add">Новое правило</button>
+      <ul id="list"></ul>
+    </aside>
+
+    <section>
+      <div id="empty">
+        <h2>Подмените первый ответ</h2>
+        <p class="muted">Создайте правило: укажите адрес запроса и ответ, который должна получить страница.</p>
+      </div>
+
+      <form id="editor" hidden onsubmit="return false">
+        <label class="field wide">Название
+          <input id="name" autocomplete="off">
+        </label>
+
+        <div class="row">
+          <label class="field">Как искать адрес
+            <select id="matchType">
+              <option value="contains">Содержит</option>
+              <option value="equals">Равен</option>
+              <option value="wildcard">Шаблон с *</option>
+              <option value="regex">Регулярное выражение</option>
+            </select>
+          </label>
+          <label class="field">Метод
+            <select id="method">
+              <option>ANY</option><option>GET</option><option>POST</option><option>PUT</option>
+              <option>PATCH</option><option>DELETE</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="field wide">Адрес запроса
+          <input id="pattern" class="mono" autocomplete="off" placeholder="/api/users">
+        </label>
+
+        <label class="field wide">Только на страницах, адрес которых содержит
+          <input id="page" class="mono" autocomplete="off" placeholder="пусто — на всех страницах">
+        </label>
+
+        <div class="row">
+          <label class="field">Код ответа
+            <input id="status" type="number" min="200" max="599">
+          </label>
+          <label class="field">Текст статуса
+            <input id="statusText" autocomplete="off" placeholder="OK">
+          </label>
+          <label class="field">Задержка, мс
+            <input id="delay" type="number" min="0" step="50">
+          </label>
+        </div>
+
+        <label class="field wide">Content-Type
+          <input id="contentType" class="mono" autocomplete="off">
+        </label>
+
+        <label class="field wide">Заголовки ответа, по одному в строке
+          <textarea id="headers" class="mono" rows="3" spellcheck="false" placeholder="Access-Control-Allow-Origin: *"></textarea>
+        </label>
+
+        <label class="field wide">Тело ответа
+          <textarea id="body" class="mono" rows="12" spellcheck="false"></textarea>
+        </label>
+
+        <div class="actions">
+          <button class="btn primary" id="save">Сохранить</button>
+          <button class="btn" id="dup">Дублировать</button>
+          <button class="btn danger" id="del">Удалить</button>
+          <span id="msg" role="status"></span>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

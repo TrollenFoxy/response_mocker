@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="ui.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>Response Mocker</h1>
+    <label class="switch" title="Включить или выключить все правила">
+      <input type="checkbox" id="enabled"><span id="enabledLabel">Вкл</span>
+    </label>
+  </header>
+  <ul id="list"></ul>
+  <p id="empty" class="muted" hidden>Правил пока нет. Создайте первое в редакторе.</p>
+  <footer><button class="btn primary" id="open">Открыть редактор</button></footer>
+  <script src="popup.js"></script>
+</body>
+</html>
